@@ -1,15 +1,17 @@
-return {
+local function gh(repo) return 'https://github.com/' .. repo end
 
-  {
-    'pmizio/typescript-tools.nvim',
-    enabled = vim.fn.filereadable(vim.fn.getcwd() .. '/tsconfig.json') == 1,
-    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-    opts = {
-      settings = {
-        tsserver_plugins = {
-          '@styled/typescript-styled-plugin',
-        },
-      },
+if vim.fn.filereadable(vim.fn.getcwd() .. '/tsconfig.json') ~= 1 then return end
+
+vim.pack.add {
+  gh 'nvim-lua/plenary.nvim',
+  gh 'neovim/nvim-lspconfig',
+  gh 'pmizio/typescript-tools.nvim',
+}
+
+require('typescript-tools').setup {
+  settings = {
+    tsserver_plugins = {
+      '@styled/typescript-styled-plugin',
     },
   },
 }

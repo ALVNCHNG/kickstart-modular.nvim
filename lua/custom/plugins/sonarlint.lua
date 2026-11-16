@@ -1,28 +1,25 @@
-return {
-  {
-    'schrieveslaach/sonarlint',
-    ft = { 'javascript', 'typescript', 'html' },
-    dependencies = { 'neovim/nvim-lspconfig' },
-    url = 'https://gitlab.com/schrieveslaach/sonarlint.nvim',
-    opts = {
-      server = {
-        cmd = {
-          'sonarlint-language-server',
-          -- Ensure that sonarlint-language-server uses stdio channel
-          '-stdio',
-          '-analyzers',
-          -- paths to the analyzers you need, using those for python and java in this example
-          vim.fn.stdpath 'data' .. '/mason/share/sonarlint-analyzers/sonarjs.jar',
-          vim.fn.stdpath 'data' .. '/mason/share/sonarlint-analyzers/sonarhtml.jar',
-        },
-      },
-      filetypes = {
-        'javascript',
-        'typescript',
-        'javascriptreact',
-        'typescriptreact',
-      },
+local function gh(repo) return 'https://github.com/' .. repo end
+
+vim.pack.add {
+  gh 'neovim/nvim-lspconfig',
+  { src = 'https://gitlab.com/schrieveslaach/sonarlint.nvim', name = 'sonarlint' },
+}
+
+require('sonarlint').setup {
+  server = {
+    cmd = {
+      'sonarlint-language-server',
+      -- Ensure that sonarlint-language-server uses stdio channel
+      '-stdio',
+      '-analyzers',
+      vim.fn.stdpath 'data' .. '/mason/share/sonarlint-analyzers/sonarjs.jar',
+      vim.fn.stdpath 'data' .. '/mason/share/sonarlint-analyzers/sonarhtml.jar',
     },
-    enabled = true,
+  },
+  filetypes = {
+    'javascript',
+    'typescript',
+    'javascriptreact',
+    'typescriptreact',
   },
 }
