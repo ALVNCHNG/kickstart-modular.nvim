@@ -12,3 +12,6 @@ spell/
 # nvim-pack-lock.json
 
 .DS_Store
+
+# Machine-specific overrides, see lua/local.example.lua
+lua/local.lua

@@ -1,5 +1,8 @@
 local function gh(repo) return 'https://github.com/' .. repo end
 
+-- Needs Java (Brewfile) and the server from Mason, which installs it on first start.
+if vim.fn.executable 'java' == 0 or vim.fn.executable 'sonarlint-language-server' == 0 then return end
+
 vim.pack.add {
   gh 'neovim/nvim-lspconfig',
   { src = 'https://gitlab.com/schrieveslaach/sonarlint.nvim', name = 'sonarlint' },
