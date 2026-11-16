@@ -24,9 +24,9 @@
       "version": "19.0.0 - 20.0.0"
     },
     "codesnap.nvim": {
-      "rev": "bd5668f13da97e0f0639131de2ef056b0560f2cc",
+      "rev": "fccc5c7a2a10ad04da83d0263d50dde7f6da2430",
       "src": "https://github.com/mistricky/codesnap.nvim",
-      "version": "'v2.0.0'"
+      "version": "'v2.1.1'"
     },
     "conform.nvim": {
       "rev": "016802de402556da54c36bd7359b441266b01cdd",
