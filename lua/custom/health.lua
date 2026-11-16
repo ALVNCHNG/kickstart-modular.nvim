@@ -26,9 +26,12 @@ local function check_java()
   end
 end
 
+local is_mac = vim.uv.os_uname().sysname == 'Darwin'
+
 local function check_c_compiler()
+  local install_hint = is_mac and 'Run `xcode-select --install`' or 'Install build tools, e.g. `sudo apt install build-essential`'
   if vim.fn.executable 'cc' == 0 then
-    vim.health.warn('No C compiler found', 'Run `xcode-select --install`')
+    vim.health.warn('No C compiler found, so native plugin builds (LuaSnip, telescope-fzf-native) will fail', install_hint)
     return
   end
   local result = vim.system({ 'cc', '-fsyntax-only', '-x', 'c', '-' }, { stdin = '#include <stdio.h>\n' }):wait()
@@ -37,9 +40,23 @@ local function check_c_compiler()
   else
     vim.health.warn(
       'C compiler cannot find the system headers, so native plugin builds (LuaSnip, telescope-fzf-native) will fail',
-      'Set SDKROOT in lua/local.lua, see lua/local.example.lua'
+      is_mac and 'Set SDKROOT in lua/local.lua, see lua/local.example.lua' or install_hint
     )
   end
+end
+
+-- macOS has pbcopy built in; Linux needs a tool for the session type.
+local function check_clipboard()
+  if is_mac then return end
+  local tools = vim.env.WAYLAND_DISPLAY and { 'wl-copy' } or { 'xclip', 'xsel' }
+  for _, exe in ipairs(tools) do
+    if vim.fn.executable(exe) == 1 then
+      vim.health.ok(string.format("Found clipboard tool '%s'", exe))
+      return
+    end
+  end
+  local pkg = vim.env.WAYLAND_DISPLAY and 'wl-clipboard' or 'xclip'
+  vim.health.warn('No clipboard tool, so yanking to the system clipboard will not work', string.format('Install `%s`', pkg))
 end
 
 local function check_env()
@@ -68,6 +85,7 @@ return {
     check_executables()
     check_java()
     check_c_compiler()
+    check_clipboard()
 
     vim.health.start 'Environment'
     check_env()

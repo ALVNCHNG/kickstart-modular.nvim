@@ -1,8 +1,11 @@
 # External tools this Neovim config depends on.
 # Install with: brew bundle --file=~/.config/nvim/Brewfile
 #
-# git, make, unzip, curl and a C compiler come from the Xcode Command Line Tools:
-#   xcode-select --install
+# Works with Homebrew on macOS and Linux. See SETUP.md for the full steps.
+#
+# git, make, unzip, curl and a C compiler come from the system:
+#   macOS: xcode-select --install
+#   Linux: sudo apt install build-essential curl unzip (or your distro's equivalent)
 # Editor tools (LSPs, formatters) are installed by Mason, see `ensure_installed`
 # in lua/kickstart/plugins/lspconfig.lua.
 
