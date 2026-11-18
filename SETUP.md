@@ -28,6 +28,15 @@ git clone https://github.com/ALVNCHNG/kickstart-modular.nvim.git ~/.config/nvim
 brew bundle --file=~/.config/nvim/Brewfile
 ```
 
+Homebrew doesn't put `openjdk@17` on your PATH, and sonarlint needs `java`:
+
+```sh
+# macOS
+sudo ln -sfn "$(brew --prefix openjdk@17)/libexec/openjdk.jdk" /Library/Java/JavaVirtualMachines/openjdk-17.jdk
+# Linux: use the distro's Java instead
+sudo apt install openjdk-17-jre-headless
+```
+
 ## 3. Node.js
 
 ```sh
@@ -67,6 +76,24 @@ Accept the plugin install prompt. Plugins install at the revisions in `nvim-pack
 ```
 
 sonarlint and typescript-tools stay off until Java, Node and Mason's `sonarlint-language-server` are available, so a half-set-up machine starts without errors.
+
+If the first launch showed `Build failed for LuaSnip` or `telescope-fzf-native.nvim`, fix the compiler (see `:checkhealth custom`), then reinstall them so they rebuild:
+
+```sh
+nvim --clean "+lua vim.pack.del({ 'LuaSnip', 'telescope-fzf-native.nvim' })" +qa
+nvim
+```
+
+## Not in this repo
+
+Bring these over yourself:
+
+- `OPENROUTER_API_KEY` and `ANTHROPIC_BASE_URL` (keep them in a password manager)
+- `~/.config/agents/skills`, which codecompanion's agentskills extension reads
+- Your terminal's font setting, if you use a Nerd Font
+- Shell profile lines: the `export`s above and `fnm env`
+
+Undo history, command history and codecompanion chats stay on the old machine.
 
 ## Keeping machines in sync
 
