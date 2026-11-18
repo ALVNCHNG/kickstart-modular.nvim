@@ -84,11 +84,6 @@
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
-    "remote-nvim.nvim": {
-      "rev": "9992c2fb8bf4f11aca2c8be8db286b506f92efcb",
-      "src": "https://github.com/amitds1997/remote-nvim.nvim",
-      "version": ">=0.0.0"
-    },
     "sonarlint": {
       "rev": "acd09b78969ddc965a7ddf59abb9d9eec5ecd94f",
       "src": "https://gitlab.com/schrieveslaach/sonarlint.nvim"
