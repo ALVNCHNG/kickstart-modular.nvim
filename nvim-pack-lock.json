@@ -19,9 +19,9 @@
       "src": "https://github.com/cairijun/codecompanion-agentskills.nvim"
     },
     "codecompanion.nvim": {
-      "rev": "6794c8bcbe9e8614588749cafb5de29d7fa57c3b",
+      "rev": "8ffcc9a78d87732a26243de37ef697f54efe91c2",
       "src": "https://github.com/olimorris/codecompanion.nvim",
-      "version": "19.0.0 - 20.0.0"
+      "version": "20.0.0 - 21.0.0"
     },
     "codesnap.nvim": {
       "rev": "fccc5c7a2a10ad04da83d0263d50dde7f6da2430",

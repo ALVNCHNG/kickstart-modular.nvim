@@ -4,7 +4,7 @@ vim.pack.add {
   gh 'nvim-lua/plenary.nvim',
   gh 'nvim-treesitter/nvim-treesitter',
   gh 'cairijun/codecompanion-agentskills.nvim',
-  { src = gh 'olimorris/codecompanion.nvim', version = vim.version.range '^19.0.0' },
+  { src = gh 'olimorris/codecompanion.nvim', version = vim.version.range '^20.0.0' },
 }
 
 require('codecompanion').setup {
